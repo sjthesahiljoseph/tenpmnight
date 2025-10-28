@@ -119,6 +119,7 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int n
 		}
 
 		clear_screen(0xff40ff40);
+		draw_rect_in_pixels(50, 50, 150, 200, 0xff4040ff);
 
 		StretchDIBits(hdc, 0, 0, render_buffer.width, render_buffer.height, 0, 0,
 					  render_buffer.width, render_buffer.height, render_buffer.pixels,
