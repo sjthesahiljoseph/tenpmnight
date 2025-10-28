@@ -6,15 +6,25 @@
 #include <windows.h>
 
 struct {
-
+	// platform non-specific.
 	int width;
 	int height;
 	u32 *pixels;
+	// platform specific.
 	BITMAPINFO bitmap_info;
 
 } typedef Render_Buffer;
 
+/* struct { */
+/* 	int width; */
+/* 	int height; */
+/* 	u32 *pixels; */
+/* 	BITMAPINFO bitmap_info; */
+/* } typedef Game_Render_Buffer; */
+
 global_variable Render_Buffer render_buffer;
+
+#include "software_rendering.c"
 
 internal
 LRESULT window_callback(HWND window, UINT message, WPARAM w_param, LPARAM l_param) {
@@ -107,6 +117,8 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int n
 
 
 		}
+
+		clear_screen(0xffff0044);
 
 		StretchDIBits(hdc, 0, 0, render_buffer.width, render_buffer.height, 0, 0,
 					  render_buffer.width, render_buffer.height, render_buffer.pixels,
