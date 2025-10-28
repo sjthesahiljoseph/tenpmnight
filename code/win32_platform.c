@@ -32,9 +32,13 @@ LRESULT window_callback(HWND window, UINT message, WPARAM w_param, LPARAM l_para
 
 	case WM_SIZE: {
 
-		// Get width and height.
-		// Allocate the render_buffer according to the width and height and other stuff.
-		// Fill the bitmap_info.
+		RECT rect;
+
+		GetWindowRect(window, &rect);
+
+		render_buffer.width = rect.right - rect.left;
+		render_buffer.height = rect.bottom - rect.top;
+		
 		
 	} break;
 
