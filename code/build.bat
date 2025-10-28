@@ -11,7 +11,7 @@ pushd ..\build
 del *.pdb > NUL 2 > NUL
 echo WAITING FOR PDB > lock.tmp
 
-cl -nologo -Zi -FC ..\code\win32_platform.c user32.lib gdi32.lib
+cl -nologo -Zi -FC ..\code\win32_platform.c /link user32.lib gdi32.lib -incremental:no
 
 del lock.tmp
 del *.obj
