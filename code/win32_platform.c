@@ -38,6 +38,25 @@ LRESULT window_callback(HWND window, UINT message, WPARAM w_param, LPARAM l_para
 
 		render_buffer.width = rect.right - rect.left;
 		render_buffer.height = rect.bottom - rect.top;
+
+		if (render_buffer.pixels) {
+			VirtualFree(render_buffer.pixels, 0, MEM_RELEASE);
+		}
+
+		render_buffer.pixels = VirtualAlloc(0, (sizeof(u32) * (render_buffer.width * render_buffer.height)),
+											MEM_COMMIT|MEM_RESERVE, PAGE_READWRITE);
+
+		render_buffer.bitmap_info.bmiHeader.biSize;
+		render_buffer.bitmap_info.bmiHeader.biWidth;
+		render_buffer.bitmap_info.bmiHeader.biHeight;
+		render_buffer.bitmap_info.bmiHeader.biPlanes;
+		render_buffer.bitmap_info.bmiHeader.biBitCount;
+		render_buffer.bitmap_info.bmiHeader.biCompression;
+		render_buffer.bitmap_info.bmiHeader.biSizeImage;
+		render_buffer.bitmap_info.bmiHeader.biXPelsPerMeter;
+		render_buffer.bitmap_info.bmiHeader.biYPelsPerMeter;
+		render_buffer.bitmap_info.bmiHeader.biClrUsed;
+		render_buffer.bitmap_info.bmiHeader.biClrImportant;
 		
 		
 	} break;
@@ -56,8 +75,7 @@ LRESULT window_callback(HWND window, UINT message, WPARAM w_param, LPARAM l_para
 
 
 
-int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
-			LPSTR lpCmdLine, int nShowCmd) {
+int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nShowCmd) {
 
 	WNDCLASSA window_class = {0};
 
@@ -76,8 +94,7 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 
 
 	HWND window = CreateWindowExA(0, window_class.lpszClassName, window_class.lpszClassName,
-								  WS_VISIBLE|WS_OVERLAPPEDWINDOW, CW_USEDEFAULT,
-								  CW_USEDEFAULT,
+								  WS_VISIBLE|WS_OVERLAPPEDWINDOW, CW_USEDEFAULT, CW_USEDEFAULT,
 								  1280, 720, 0, 0, 0, 0);
 	
 	HDC hdc = GetDC(window);
@@ -94,7 +111,8 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 
 		}
 
-		StretchDIBits(hdc, 0, 0, render_buffer.width, render_buffer.height, 0, 0, render_buffer.width, render_buffer.height, render_buffer.pixels,
+		StretchDIBits(hdc, 0, 0, render_buffer.width, render_buffer.height, 0, 0,
+					  render_buffer.width, render_buffer.height, render_buffer.pixels,
 					  &render_buffer.bitmap_info, DIB_RGB_COLORS, SRCCOPY);
 
 		
