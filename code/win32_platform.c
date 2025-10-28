@@ -118,7 +118,7 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int n
 
 		}
 
-		clear_screen(0xffff0044);
+		clear_screen(0xff40ff40);
 
 		StretchDIBits(hdc, 0, 0, render_buffer.width, render_buffer.height, 0, 0,
 					  render_buffer.width, render_buffer.height, render_buffer.pixels,
