@@ -2,6 +2,16 @@
 
 #include <windows.h>
 
+typedef int b32;
+
+#define global_variable static
+#define internal static
+
+#define true 1
+#define false 0
+
+global_variable b32 running = true;
+
 LRESULT window_callback(HWND window, UINT message, WPARAM w_param, LPARAM l_param) {
 
 	return DefWindowProcA(window, message, w_param, l_param);
