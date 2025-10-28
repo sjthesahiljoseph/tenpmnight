@@ -30,6 +30,14 @@ LRESULT window_callback(HWND window, UINT message, WPARAM w_param, LPARAM l_para
 		
 	} break;
 
+	case WM_SIZE: {
+
+		// Get width and height.
+		// Allocate the render_buffer according to the width and height and other stuff.
+		// Fill the bitmap_info.
+		
+	} break;
+
 	default: {
 		
 		result = DefWindowProcA(window, message, w_param, l_param);
