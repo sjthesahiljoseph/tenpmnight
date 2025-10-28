@@ -63,6 +63,8 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 								  WS_VISIBLE|WS_OVERLAPPEDWINDOW, CW_USEDEFAULT,
 								  CW_USEDEFAULT,
 								  1280, 720, 0, 0, 0, 0);
+	
+	HDC hdc = GetDC(window);
 
 	while (running) {
 		
@@ -76,6 +78,11 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 
 		}
 
+
+		StretchDIBits(hdc, 0, 0, width, height, 0, 0, width, height, memory,
+					  bitmap_info, DIB_RGB_COLORS, SRCCOPY);
+
+		
 	}
 
 
