@@ -4,8 +4,12 @@
 
 pushd ..\build
 
-cl -nologo -Zi ..\code\win32_platform.c
+cl -nologo -Zi ..\code\win32_platform.c user32.lib
+
+win32_platform.exe
 
 popd
+
+
 
 
