@@ -78,9 +78,14 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 
 		}
 
+		int width;
+		int height;
+		void *memory;
+		BITMAP_INFO bitmap_info;
+
 
 		StretchDIBits(hdc, 0, 0, width, height, 0, 0, width, height, memory,
-					  bitmap_info, DIB_RGB_COLORS, SRCCOPY);
+					  &bitmap_info, DIB_RGB_COLORS, SRCCOPY);
 
 		
 	}
