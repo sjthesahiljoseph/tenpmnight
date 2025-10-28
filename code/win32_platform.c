@@ -14,7 +14,7 @@ struct {
 
 } typedef Render_Buffer;
 
-Render_Buffer render_buffer;
+global_variable Render_Buffer render_buffer;
 
 internal
 LRESULT window_callback(HWND window, UINT message, WPARAM w_param, LPARAM l_param) {
@@ -46,17 +46,14 @@ LRESULT window_callback(HWND window, UINT message, WPARAM w_param, LPARAM l_para
 		render_buffer.pixels = VirtualAlloc(0, (sizeof(u32) * (render_buffer.width * render_buffer.height)),
 											MEM_COMMIT|MEM_RESERVE, PAGE_READWRITE);
 
-		render_buffer.bitmap_info.bmiHeader.biSize;
-		render_buffer.bitmap_info.bmiHeader.biWidth;
-		render_buffer.bitmap_info.bmiHeader.biHeight;
-		render_buffer.bitmap_info.bmiHeader.biPlanes;
-		render_buffer.bitmap_info.bmiHeader.biBitCount;
-		render_buffer.bitmap_info.bmiHeader.biCompression;
-		render_buffer.bitmap_info.bmiHeader.biSizeImage;
-		render_buffer.bitmap_info.bmiHeader.biXPelsPerMeter;
-		render_buffer.bitmap_info.bmiHeader.biYPelsPerMeter;
-		render_buffer.bitmap_info.bmiHeader.biClrUsed;
-		render_buffer.bitmap_info.bmiHeader.biClrImportant;
+		render_buffer.bitmap_info.bmiHeader.biSize = sizeof(render_buffer.bitmap_info.bmiHeader);
+		render_buffer.bitmap_info.bmiHeader.biWidth = render_buffer.width;
+		render_buffer.bitmap_info.bmiHeader.biHeight = render_buffer.height;
+		render_buffer.bitmap_info.bmiHeader.biPlanes = 1;
+		render_buffer.bitmap_info.bmiHeader.biBitCount = 32;
+		render_buffer.bitmap_info.bmiHeader.biCompression = BI_RGB;
+		render_buffer.bitmap_info.bmiHeader.biSizeImage = 0;
+		
 		
 		
 	} break;
