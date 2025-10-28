@@ -24,18 +24,15 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	window_class.hbrBackground = 0;
 	window_class.lpszMenuName = 0;
 	window_class.lpszClassName = "sj the sahil joseph's tenpmnight";
-/*
-	RegisterClassA(
-		[in] const WNDCLASSA *lpWndClass
-		);
 
-	HWND window = CreateWindowExA(0, window_class.lpszClassName,
-								  LPCSTR lpWindowName, DWORD dwStyle,
-								  int X, int Y,
-								  int nWidth, int nHeight,
-								  HWND hWndParent, HMENU hMenu,
-								  HINSTANCE hInstance, LPVOID lpParam);
-	*/
+	RegisterClassA(&window_class);
+
+
+	HWND window = CreateWindowExA(0, window_class.lpszClassName, window_class.lpszClassName,
+								  WS_VISIBLE|WS_OVERLAPPEDWINDOW, CW_USEDEFAULT,
+								  CW_USEDEFAULT,
+								  1280, 720, 0, 0, 0, 0);
+
 
 	return 0;
 }
