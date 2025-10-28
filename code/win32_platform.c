@@ -43,6 +43,10 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 								  CW_USEDEFAULT,
 								  1280, 720, 0, 0, 0, 0);
 
+	while (running) {
+		// main loop
+	}
+
 
 	return 0;
 }
